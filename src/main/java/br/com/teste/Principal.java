@@ -105,7 +105,7 @@ public class Principal {
 
         // 3.9 - Funcionário com maior idade.
         Funcionario maisVelho = funcionarios.stream()
-                .max(Comparator.comparing(Funcionario::getDataNascimento))
+                .min(Comparator.comparing(Funcionario::getDataNascimento))
                 .orElseThrow();
 
         System.out.println("\n=== 3.9 - FUNCIONÁRIO COM MAIOR IDADE ===");
@@ -143,7 +143,7 @@ public class Principal {
 
     public static String formatarMoeda(BigDecimal valor) {
         NumberFormat formato = NumberFormat.getNumberInstance(
-                Locale.of("pt", "BR")
+                new Locale("pt", "BR")
         );
         formato.setMinimumFractionDigits(2);
         formato.setMaximumFractionDigits(2);

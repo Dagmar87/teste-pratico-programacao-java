@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Funcionario extends Pessoa {
+
     private BigDecimal salario;
     private String funcao;
 
@@ -34,13 +35,23 @@ public class Funcionario extends Pessoa {
 
     public void aplicarAumento(BigDecimal percentual) {
         BigDecimal fator = BigDecimal.ONE.add(
-                percentual.divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP)
+                percentual.divide(
+                        BigDecimal.valueOf(100),
+                        10,
+                        RoundingMode.HALF_UP
+                )
         );
-        salario = salario.multiply(fator).setScale(2, RoundingMode.HALF_UP);
+
+        salario = salario
+                .multiply(fator)
+                .setScale(2, RoundingMode.HALF_UP);
     }
 
     public int getIdade() {
-        return Period.between(getDataNascimento(), LocalDate.now()).getYears();
+        return Period.between(
+                getDataNascimento(),
+                LocalDate.now()
+        ).getYears();
     }
 
     @Override
